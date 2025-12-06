@@ -7,6 +7,10 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\IslamicController;
 use App\Http\Controllers\SantriController; // Import Controller Baru
+use App\Http\Controllers\DaftarUlangController;
+use App\Http\Controllers\Admin\DaftarUlangAdminController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\Admin\PembayaranAdminController;
 
 /* ... Route Home, About, Programs, News tetap sama ... */
 
@@ -35,6 +39,15 @@ Route::get('/news', function (Request $request) {
 // === ROUTE PENDAFTARAN SANTRI BARU (Updated) ===
 Route::get('/pendaftaran', [SantriController::class, 'create'])->name('pendaftaran'); // Ganti nama route jadi pendaftaran agar lebih relevan
 Route::post('/pendaftaran', [SantriController::class, 'store'])->name('pendaftaran.store');
+
+// === ROUTE CEK STATUS & PEMBAYARAN SANTRI ===
+Route::get('/cek-status', [PembayaranController::class, 'index'])->name('pembayaran.cek');
+Route::post('/cek-status', [PembayaranController::class, 'checkStatus'])->name('pembayaran.process-check');
+Route::post('/kirim-bukti', [PembayaranController::class, 'store'])->name('pembayaran.store');
+
+Route::get('/daftar-ulang', [DaftarUlangController::class, 'create'])->name('daftar-ulang.create');
+Route::post('/daftar-ulang', [DaftarUlangController::class, 'store'])->name('daftar-ulang.store');
+
 
 // Redirect /register ke /pendaftaran supaya link lama tetap jalan
 Route::get('/register', function () {
@@ -89,6 +102,19 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('pendaftar', [SantriController::class, 'index'])->name('admin.santri.index');
     Route::get('pendaftar/{santri}', [SantriController::class, 'show'])->name('admin.santri.show');
     Route::patch('pendaftar/{santri}/status', [SantriController::class, 'updateStatus'])->name('admin.santri.update-status');
+
+    // Pembayaran Management
+    Route::get('verifikasi-pembayaran', [PembayaranAdminController::class, 'index'])->name('admin.pembayaran.index');
+    Route::patch('verifikasi-pembayaran/{id}/terima', [PembayaranAdminController::class, 'verify'])->name('admin.pembayaran.verify');
+    Route::patch('verifikasi-pembayaran/{id}/tolak', [PembayaranAdminController::class, 'reject'])->name('admin.pembayaran.reject');
+
+    // === ADMIN DAFTAR ULANG (SANTRI LAMA) ===
+    Route::get('daftar-ulang/export', [App\Http\Controllers\Admin\DaftarUlangAdminController::class, 'export'])->name('admin.daftar-ulang.export');
+    Route::get('daftar-ulang', [DaftarUlangAdminController::class, 'index'])->name('admin.daftar-ulang.index');
+    Route::patch('daftar-ulang/{id}/verify', [DaftarUlangAdminController::class, 'verify'])->name('admin.daftar-ulang.verify');
+    Route::patch('daftar-ulang/{id}/reject', [DaftarUlangAdminController::class, 'reject'])->name('admin.daftar-ulang.reject');
+    Route::delete('daftar-ulang/{id}', [DaftarUlangAdminController::class, 'destroy'])->name('admin.daftar-ulang.destroy');
+    Route::get('daftar-ulang-santri/{id}', [DaftarUlangAdminController::class, 'show'])->name('admin.daftar-ulang.show');
 });
 
 // Islamic Features API Routes

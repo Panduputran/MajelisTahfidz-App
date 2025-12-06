@@ -29,4 +29,9 @@ class Santri extends Model
     protected $casts = [
         'tanggal_lahir' => 'date',
     ];
+
+    public function pembayaran()
+    {
+        return $this->hasOne(PembayaranSantri::class);
+    }
 }
