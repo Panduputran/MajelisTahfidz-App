@@ -10,7 +10,6 @@ class PembayaranAdminController extends Controller
 {
     public function index()
     {
-        // Menampilkan list pembayaran, diurutkan: Pending dulu, baru Verified/Rejected
         $pembayaran = PembayaranSantri::with('santri')
             ->orderByRaw("FIELD(status, 'pending', 'verified', 'rejected')")
             ->latest()
@@ -19,15 +18,33 @@ class PembayaranAdminController extends Controller
         return view('admin.pembayaran.index', compact('pembayaran'));
     }
 
+    // === FITUR BARU: EXPORT EXCEL (.xls) ===
+    public function export()
+    {
+        // Ambil semua data dengan relasi santri
+        $data = PembayaranSantri::with('santri')->latest()->get();
+        $fileName = 'Data_Pembayaran_Santri_Baru_' . date('d-m-Y_H-i') . '.xls';
+
+        // Return View sebagai file Excel
+        return response(view('admin.pembayaran.export', compact('data')))
+            ->header('Content-Type', 'application/vnd.ms-excel')
+            ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', '0');
+    }
+
+    // === FITUR BARU: SHOW DETAIL ===
+    public function show($id)
+    {
+        $item = PembayaranSantri::with('santri')->findOrFail($id);
+        return view('admin.pembayaran.show', compact('item'));
+    }
+
     public function verify($id)
     {
         $bayar = PembayaranSantri::findOrFail($id);
-
-        // 1. Update status pembayaran jadi Verified
         $bayar->update(['status' => 'verified']);
 
-        // 2. Update status santri jadi 'aktif' (Resmi jadi santri)
-        // Pastikan relasi santri ada
         if ($bayar->santri) {
             $bayar->santri->update(['status' => 'aktif']);
         }
@@ -39,7 +56,6 @@ class PembayaranAdminController extends Controller
     {
         $bayar = PembayaranSantri::findOrFail($id);
 
-        // Update jadi rejected dengan alasan (jika ada input alasan di form)
         $bayar->update([
             'status' => 'rejected',
             'catatan_admin' => $request->alasan ?? 'Bukti tidak valid/kurang jelas. Silakan upload ulang.'

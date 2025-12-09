@@ -4,10 +4,22 @@
 
 @section('content')
     <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        
+        {{-- Header & Toolbar --}}
         <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
             <div>
                 <h2 class="text-lg font-bold text-slate-800">Riwayat Pembayaran</h2>
                 <p class="text-sm text-slate-500">Verifikasi bukti transfer administrasi santri baru.</p>
+            </div>
+            <div class="flex gap-2">
+                {{-- TOMBOL EXPORT BARU --}}
+                <a href="{{ route('admin.pembayaran.export') }}" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition shadow-sm flex items-center">
+                    <i class="fa-solid fa-file-excel mr-2"></i> Export Excel
+                </a>
+                
+                <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-2 rounded-full border border-indigo-200 flex items-center">
+                    Total: {{ $pembayaran->total() }}
+                </span>
             </div>
         </div>
 
@@ -49,44 +61,36 @@
                             </td>
                             <td class="px-6 py-4 text-center">
                                 @if($item->status == 'pending')
-                                    <span
-                                        class="bg-yellow-100 text-yellow-800 text-xs px-2.5 py-1 rounded-full font-bold border border-yellow-200">Pending</span>
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs px-2.5 py-1 rounded-full font-bold border border-yellow-200">Pending</span>
                                 @elseif($item->status == 'verified')
-                                    <span
-                                        class="bg-green-100 text-green-800 text-xs px-2.5 py-1 rounded-full font-bold border border-green-200">Lunas</span>
+                                    <span class="bg-green-100 text-green-800 text-xs px-2.5 py-1 rounded-full font-bold border border-green-200">Lunas</span>
                                 @else
-                                    <span
-                                        class="bg-red-100 text-red-800 text-xs px-2.5 py-1 rounded-full font-bold border border-red-200">Ditolak</span>
+                                    <span class="bg-red-100 text-red-800 text-xs px-2.5 py-1 rounded-full font-bold border border-red-200">Ditolak</span>
                                 @endif
                             </td>
                             <td class="px-6 py-4 text-center">
-                                @if($item->status == 'pending')
-                                    <div class="flex justify-center gap-2">
-                                        {{-- Tombol Terima --}}
+                                <div class="flex justify-center items-center gap-2">
+                                    {{-- TOMBOL SHOW BARU --}}
+                                    <a href="{{ route('admin.pembayaran.show', $item->id) }}" class="w-8 h-8 rounded bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white transition flex items-center justify-center border border-blue-100" title="Detail">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+
+                                    @if($item->status == 'pending')
                                         <form action="{{ route('admin.pembayaran.verify', $item->id) }}" method="POST">
                                             @csrf @method('PATCH')
-                                            <button type="submit"
-                                                class="w-8 h-8 rounded bg-green-100 text-green-600 hover:bg-green-600 hover:text-white transition flex items-center justify-center border border-green-200"
-                                                title="Verifikasi Lunas"
-                                                onclick="return confirm('Verifikasi pembayaran ini sebagai Lunas?')">
+                                            <button type="submit" class="w-8 h-8 rounded bg-green-50 text-green-600 hover:bg-green-600 hover:text-white transition flex items-center justify-center border border-green-200" title="Verifikasi Lunas" onclick="return confirm('Verifikasi pembayaran ini sebagai Lunas?')">
                                                 <i class="fa-solid fa-check"></i>
                                             </button>
                                         </form>
-
-                                        {{-- Tombol Tolak --}}
+                                        
                                         <form action="{{ route('admin.pembayaran.reject', $item->id) }}" method="POST">
                                             @csrf @method('PATCH')
-                                            <button type="submit"
-                                                class="w-8 h-8 rounded bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition flex items-center justify-center border border-red-200"
-                                                title="Tolak / Minta Upload Ulang"
-                                                onclick="return confirm('Tolak pembayaran ini?')">
+                                            <button type="submit" class="w-8 h-8 rounded bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition flex items-center justify-center border border-red-200" title="Tolak" onclick="return confirm('Tolak pembayaran ini?')">
                                                 <i class="fa-solid fa-xmark"></i>
                                             </button>
                                         </form>
-                                    </div>
-                                @else
-                                    <span class="text-slate-400 text-xs">-</span>
-                                @endif
+                                    @endif
+                                </div>
                             </td>
                         </tr>
                     @empty

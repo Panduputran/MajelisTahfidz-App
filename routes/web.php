@@ -100,10 +100,15 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     // === NEW: Manajemen Pendaftar Santri ===
     Route::get('pendaftar', [SantriController::class, 'index'])->name('admin.santri.index');
-    Route::get('pendaftar/{santri}', [SantriController::class, 'show'])->name('admin.santri.show');
+    Route::get('pendaftar/export', [SantriController::class, 'export'])->name('admin.santri.export'); // Route Export
+    Route::get('pendaftar/{santri}', [SantriController::class, 'show'])->name('admin.santri.show'); // Route Show
     Route::patch('pendaftar/{santri}/status', [SantriController::class, 'updateStatus'])->name('admin.santri.update-status');
-
     // Pembayaran Management
+    Route::get('verifikasi-pembayaran', [PembayaranAdminController::class, 'index'])->name('admin.pembayaran.index');
+    // Route Export (BARU)
+    Route::get('verifikasi-pembayaran/export', [PembayaranAdminController::class, 'export'])->name('admin.pembayaran.export');
+    // Route Show Detail (BARU)
+    Route::get('verifikasi-pembayaran/{id}', [PembayaranAdminController::class, 'show'])->name('admin.pembayaran.show');
     Route::get('verifikasi-pembayaran', [PembayaranAdminController::class, 'index'])->name('admin.pembayaran.index');
     Route::patch('verifikasi-pembayaran/{id}/terima', [PembayaranAdminController::class, 'verify'])->name('admin.pembayaran.verify');
     Route::patch('verifikasi-pembayaran/{id}/tolak', [PembayaranAdminController::class, 'reject'])->name('admin.pembayaran.reject');

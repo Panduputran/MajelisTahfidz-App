@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class SantriController extends Controller
 {
-    // === FRONTEND ===
+    // ... method create dan store untuk frontend tetap ada di atas ...
 
     public function create()
     {
@@ -32,16 +32,35 @@ class SantriController extends Controller
         return redirect()->route('pendaftaran')->with('success', 'Alhamdulillah, data pendaftaran berhasil dikirim. Kami akan segera menghubungi via WhatsApp.');
     }
 
-    // === BACKEND (ADMIN) ===
+    // === BAGIAN ADMIN ===
 
     public function index()
     {
-        $pendaftar = Santri::latest()->paginate(10);
+        $pendaftar = Santri::orderByRaw("FIELD(status, 'pending', 'diterima', 'ditolak', 'aktif')")
+            ->latest()
+            ->paginate(10);
+
         return view('admin.santri.index', compact('pendaftar'));
     }
 
-    public function show(Santri $santri)
+    // === FITUR BARU: EXPORT EXCEL (.xls) ===
+    public function export()
     {
+        $data = Santri::latest()->get();
+        $fileName = 'Data_Pendaftar_Baru_' . date('d-m-Y_H-i') . '.xls';
+
+        return response(view('admin.santri.export', compact('data')))
+            ->header('Content-Type', 'application/vnd.ms-excel')
+            ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', '0');
+    }
+
+    // === FITUR BARU: SHOW DETAIL ===
+    public function show($id)
+    {
+        // Menggunakan findOrFail dengan ID
+        $santri = Santri::findOrFail($id);
         return view('admin.santri.show', compact('santri'));
     }
 

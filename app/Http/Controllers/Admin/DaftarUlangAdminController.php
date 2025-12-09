@@ -18,7 +18,7 @@ class DaftarUlangAdminController extends Controller
         return view('admin.daftar-ulang.index', compact('data'));
     }
 
-    // === PERBAIKAN: EXPORT EXCEL RAPI (CSV) ===
+    // === EXPORT EXCEL TANPA LIBRARY (FORMAT HTML TABLE) ===
     public function export()
     {
         $data = DaftarUlang::latest()->get();
@@ -32,6 +32,7 @@ class DaftarUlangAdminController extends Controller
         return view('admin.daftar-ulang.export', compact('data'));
     }
 
+    // ... method show, verify, reject, destroy biarkan tetap ada ...
     public function show($id)
     {
         $item = DaftarUlang::findOrFail($id);

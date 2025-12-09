@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <style>
         /* CSS agar tabel rapi saat dibuka di Excel */
         table {
@@ -42,7 +43,7 @@
         <thead>
             <tr>
                 <th colspan="12"
-                    style="font-size: 16px; height: 50px; background-color: #ffffff; color: #000; border: none;">
+                    style="font-size: 16px; height: 50px; background-color: #ffffff; color: #000; border: none; text-align: left;">
                     DATA DAFTAR ULANG SANTRI LAMA
                 </th>
             </tr>
