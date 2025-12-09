@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Website Resmi Majlis Tahfidz Al-Qur'an Syifa Lilmu'minin">
-    <link rel="icon" type="image" href="{{ asset('assets/icon.png') }}">
+    <link rel="icon" type="image" href="{{ asset('/logo.jpg') }}">
     {{-- Font Poppins --}}
     <title>{{ config('app.name', "Majlis Tahfidz Al-Qur'an Syifa Lilmu'minin") }}</title>
 
