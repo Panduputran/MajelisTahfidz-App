@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Majlis Tahfidz') }} - Admin Panel</title>
-
+    <link rel="icon" type="image" href="{{ asset('assets/icon.png') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700|amiri:400,700" rel="stylesheet" />
@@ -200,7 +200,8 @@
                     <div class="flex items-center gap-3 pl-6 border-l border-slate-200">
                         <div class="text-right hidden md:block">
                             <p class="text-sm font-bold text-slate-700 leading-none">
-                                {{ Auth::user()->name ?? 'Administrator' }}</p>
+                                {{ Auth::user()->name ?? 'Administrator' }}
+                            </p>
                             <p class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider mt-1">Super Admin
                             </p>
                         </div>
