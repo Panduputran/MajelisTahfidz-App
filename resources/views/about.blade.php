@@ -168,11 +168,11 @@
 
                     <div
                         class="w-32 h-32 mx-auto rounded-full p-1 bg-gradient-to-tr from-blue-400 to-emerald-400 mb-4 group-hover:scale-105 transition-transform duration-300">
-                        <img src="https://ui-avatars.com/api/?name=KH+Abdullah&background=fff&color=333" alt="Pengasuh"
+                        <img src="https://ui-avatars.com/api/?name=H+N&background=fff&color=333" alt="Pengasuh"
                             class="w-full h-full rounded-full object-cover border-4 border-white">
                     </div>
 
-                    <h3 class="text-xl font-bold text-slate-800">KH. Abdullah</h3>
+                    <h3 class="text-xl font-bold text-slate-800">Habib Nabil Almunawar</h3>
                     <p class="text-sm text-islamic-primary font-medium mb-3">Pimpinan & Pengasuh</p>
                     <p class="text-slate-500 text-sm italic">"Mengawal santri dengan hati, mendidik dengan keteladanan."</p>
 
@@ -192,11 +192,11 @@
 
                     <div
                         class="w-32 h-32 mx-auto rounded-full p-1 bg-gradient-to-tr from-blue-400 to-emerald-400 mb-4 group-hover:scale-105 transition-transform duration-300">
-                        <img src="https://ui-avatars.com/api/?name=Ust+Hidayat&background=fff&color=333" alt="Koordinator"
+                        <img src="{{ asset('assets/habib (2).png') }}" alt="Koordinator"
                             class="w-full h-full rounded-full object-cover border-4 border-white">
                     </div>
 
-                    <h3 class="text-xl font-bold text-slate-800">Ust. Hidayat, Lc</h3>
+                    <h3 class="text-xl font-bold text-slate-800">Habib Jafar Almunawar</h3>
                     <p class="text-sm text-islamic-primary font-medium mb-3">Koordinator Tahfidz</p>
                     <p class="text-slate-500 text-sm italic">"Hafalan kuat, tajwid tepat, akhlak memikat."</p>
 
@@ -216,11 +216,11 @@
 
                     <div
                         class="w-32 h-32 mx-auto rounded-full p-1 bg-gradient-to-tr from-blue-400 to-emerald-400 mb-4 group-hover:scale-105 transition-transform duration-300">
-                        <img src="https://ui-avatars.com/api/?name=Staf+Admin&background=fff&color=333" alt="Admin"
+                        <img src="{{ asset('assets/habib (1).png') }}" alt="Admin"
                             class="w-full h-full rounded-full object-cover border-4 border-white">
                     </div>
 
-                    <h3 class="text-xl font-bold text-slate-800">Fulanah, S.Pd</h3>
+                    <h3 class="text-xl font-bold text-slate-800">Habib Ahmad Almunawar</h3>
                     <p class="text-sm text-islamic-primary font-medium mb-3">Kepala Administrasi</p>
                     <p class="text-slate-500 text-sm italic">"Melayani kebutuhan santri dan wali dengan sepenuh hati."</p>
 

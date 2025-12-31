@@ -90,11 +90,11 @@
                                     class="h-8 mb-4 opacity-80" alt="BSI">
                                 <p class="text-sm text-blue-600 font-bold tracking-wider mb-1">BANK SYARIAH INDONESIA</p>
                                 <div class="flex items-center justify-between">
-                                    <span class="text-2xl font-mono font-bold text-slate-800">1234 5678 90</span>
+                                    <span class="text-2xl font-mono font-bold text-slate-800">7266633418</span>
                                     <button onclick="navigator.clipboard.writeText('1234567890')"
                                         class="text-blue-500 hover:text-blue-700 text-sm font-bold">SALIN</button>
                                 </div>
-                                <p class="text-sm text-slate-600 mt-2">a.n Yayasan Syifa Lilmu'minin</p>
+                                <p class="text-sm text-slate-600 mt-2">A/n Yayasan Shotu Azzikri Walfikri</p>
                             </div>
                         </div>
 

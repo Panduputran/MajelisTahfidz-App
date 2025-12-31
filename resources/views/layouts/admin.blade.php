@@ -164,6 +164,12 @@
                     <span class="ml-3">Pesanan Masuk</span>
                 </a>
 
+                <a href="{{ route('admin.products.index') }}" 
+   class="flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group {{ request()->routeIs('admin.products.*') ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-900/30' : 'hover:bg-slate-800 hover:text-white' }}">
+    <i class="fa-solid fa-box-open w-6 text-center {{ request()->routeIs('admin.products.*') ? 'text-white' : 'text-slate-500 group-hover:text-emerald-400' }}"></i>
+    <span class="ml-3">Manajemen Produk</span>
+</a>
+
             </nav>
 
             <!-- Logout Section -->

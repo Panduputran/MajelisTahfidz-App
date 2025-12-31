@@ -11,6 +11,7 @@ use App\Http\Controllers\DaftarUlangController;
 use App\Http\Controllers\Admin\DaftarUlangAdminController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\Admin\PembayaranAdminController;
+use App\Http\Controllers\Admin\ProductController;
 
 /* ... Route Home, About, Programs, News tetap sama ... */
 
@@ -120,6 +121,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::patch('daftar-ulang/{id}/reject', [DaftarUlangAdminController::class, 'reject'])->name('admin.daftar-ulang.reject');
     Route::delete('daftar-ulang/{id}', [DaftarUlangAdminController::class, 'destroy'])->name('admin.daftar-ulang.destroy');
     Route::get('daftar-ulang-santri/{id}', [DaftarUlangAdminController::class, 'show'])->name('admin.daftar-ulang.show');
+
+    Route::resource('products', ProductController::class, ['as' => 'admin']);
 });
 
 // Islamic Features API Routes
