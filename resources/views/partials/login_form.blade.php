@@ -82,13 +82,7 @@
             </div>
         </form>
 
-        <div class="px-8 py-4 bg-gray-50 border-t border-gray-200 mt-6 text-center">
-            <p class="text-sm text-gray-600">
-                <strong>Demo Credentials:</strong><br>
-                Email: <code class="bg-gray-200 px-1 rounded">majlis17@gmail.com</code><br>
-                Password: <code class="bg-gray-200 px-1 rounded">admin123</code>
-            </p>
-        </div>
+      
     </div>
 </div>
 

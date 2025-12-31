@@ -21,5 +21,21 @@ class AdminUserSeeder extends Seeder
             'role' => 'admin',
             'email_verified_at' => now(),
         ]);
+
+        User::create([
+            'name' => 'Davin',
+            'email' => 'muhamddavinlp@gmail.com',
+            'password' => Hash::make('MajelisTahfidz2024'),
+            'role' => 'admin',
+            'email_verified_at' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Pandu',
+            'email' => 'pandunurasih@gmail.com',
+            'password' => Hash::make('MajelisTahfidz2024'),
+            'role' => 'admin',
+            'email_verified_at' => now(),
+        ]);
     }
 }

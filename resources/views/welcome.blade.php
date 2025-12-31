@@ -65,16 +65,16 @@
                             <img src="https://ui-avatars.com/api/?name=Kiai+H&background=0D8ABC&color=fff"
                                 class="w-full h-full object-cover">
                         </div>
-                        <span class="text-xs font-bold mt-2 text-slate-700">KH. Pimpinan</span>
+                        <span class="text-xs font-bold mt-2 text-slate-700">Habib Ahmad Almunawar</span>
                     </div>
                     <div class="flex flex-col items-center group cursor-pointer">
                         <div
                             class="w-20 h-20 rounded-full overflow-hidden border-2 border-amber-400 shadow-md group-hover:scale-110 transition-transform duration-300">
                             {{-- Ganti src dengan foto asli --}}
-                            <img src="https://ui-avatars.com/api/?name=Ust+A&background=10B981&color=fff"
+                            <img src=""
                                 class="w-full h-full object-cover">
                         </div>
-                        <span class="text-xs font-bold mt-2 text-slate-700">Ust. Pengasuh</span>
+                        <span class="text-xs font-bold mt-2 text-slate-700">Habib Jafar Almunawar</span>
                     </div>
                 </div>
 
